@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Date Picker</title>
+    
+    <!-- Air Datepicker CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/air-datepicker@3.x.x/air-datepicker.css">
+
+    <!-- Custom Styles -->
+    <style>
+        /* Custom styles for the date input and calendar icon */
+        .date {
+            position: relative;
+            width: 100%; /* Full width */
+        }
+
+        .date input {
+            padding-right: 40px; /* Space for the calendar icon */
+        }
+
+        .date a {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            right: 10px; /* Position the icon on the right side */
+            transform: translateY(-50%); /* Center the icon vertically */
+        }
+
+        .air-datepicker {
+            font-family: 'Arial', sans-serif; /* Custom font for the date picker */
+        }
+
+        /* Custom styling for the 'Remove' and 'Done' buttons */
+        .air-datepicker-button {
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            padding: 5px 10px;
+        }
+
+        .air-datepicker-button.-clear- {
+            background-color: #6c757d; /* Custom color for 'Remove' button */
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="col-lg-12 my-4">
+        <label class="form-label text-uppercase">Select a day</label>
+        <div class="date" id="select-date">
+            <input type="text" class="form-control" id="datepicker" placeholder="Select a day" />
+            <a href="#" class="translate-middle-y pe-2">
+                <!-- Calendar Icon SVG -->
+                <svg class="text-body" width="25" height="25">
+                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h9V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H1a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Air Datepicker JS -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/air-datepicker@3.x.x/air-datepicker.js"></script>
+
+<!-- Initialize the date picker -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        new AirDatepicker('#datepicker', {
+            dateFormat: 'dd.MM.yyyy',  // Custom date format
+            buttons: [
+                {
+                    content: 'Remove',
+                    className: 'air-datepicker-button -clear-', // Custom 'Remove' button
+                    onClick: (dp) => dp.clear()  // Clears the selected date
+                },
+                {
+                    content: 'Done',
+                    className: 'air-datepicker-button', // Custom 'Done' button
+                    onClick: (dp) => dp.hide()  // Hides the date picker when clicked
+                }
+            ],
+            locale: {
+                days: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+                daysShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+                daysMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+                months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                monthsShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                today: 'Today',
+                clear: 'Clear',
+                dateFormat: 'dd.MM.yyyy',
+                firstDay: 0
+            }
+        });
+
+        // Open calendar when icon is clicked
+        document.querySelector('#select-date a').addEventListener('click', function (e) {
+            e.preventDefault(); // Prevent the default anchor behavior
+            document.querySelector('#datepicker').focus();  // Trigger focus to open the calendar
+        });
+    });
+</script>
+
+</body>
+</html>
