@@ -25,6 +25,7 @@
       * {
         margin: 0px;
         padding: 0px;
+        box-sizing: border-box;
       }
       body {
         /* background-color: #f4f4f4; */
@@ -453,6 +454,13 @@ div:where(.swal2-container) .swal2-html-container{
 .bulmar{
   margin-left: 200px;
 }
+
+.backbround {
+    background-image: url("./coating.png");
+    background-repeat: no-repeat;
+    background-size: 77% 18%;
+    background-position: 90%  4%;
+}
 /* .modelboxoption{
   position: relative;
 }
@@ -472,6 +480,62 @@ div:where(.swal2-container) .swal2-html-container{
       background-color: #000;
       font-size: 13px;
      }
+
+     @media (max-width: 1261px) {
+      .right-section {
+
+    padding: 20px 20px 0px 20px;
+}
+
+.radio-container .radio-label {
+    font-size: 10px;
+}
+
+.right-section h3 {
+    font-size: 40px;
+    font-weight: 700px;
+}
+
+.form-check-label {
+    font-size: 15px;
+}
+     }
+
+
+     @media (max-width: 1028px) {
+      .Vehiclerow input[type="text"] {
+    width: 188px;
+}
+
+input[type="date"] {
+  
+    font-size: 13px;
+    width: 147px;
+  
+}
+
+.upload-btn {
+    padding: 8px 13px;
+    font-size: 1rem;
+  
+}
+.upload-btn {
+    padding: 8px 13px;
+    font-size: 12px;
+}
+.servicebox {
+    padding-block: 0px;
+}
+
+.form-check-label {
+    font-size: 12px;
+}
+.yellow-bg p {
+    font-size: 20px;
+}
+     }
+
+
 
       @media (max-width: 768px) {
         .warranty-card {
@@ -581,6 +645,7 @@ div:where(.swal2-container) .swal2-html-container{
 
         h4 {
           margin-bottom: 26px;
+          margin-top: 13px;
         }
         .custom-input1 {
           border: none;
@@ -659,13 +724,14 @@ div:where(.swal2-container) .swal2-html-container{
   margin-left: 50px;
   width: 88px !important;
 }
-      }
-      .backbround {
-    background-image: url("./image.png");
+.backbround {
+    background-image: url("./coating.png");
     background-repeat: no-repeat;
-    background-size: 57%;
-    background-position: 90%  4%;
+    background-size: 77% 14%;
+    background-position: 77%  5%;
 }
+      }
+ 
 
     </style>
   </head>
@@ -674,6 +740,8 @@ div:where(.swal2-container) .swal2-html-container{
       <form id="warrantyForm">
         <div class="row warranty-card">
           <div class="col-lg-8 left-section">
+            <div class="backbround">
+
             <div class="lest-div  ">
               <div class="row toplogo-row ">
                 <div class="col-6 logo">
@@ -1188,7 +1256,7 @@ div:where(.swal2-container) .swal2-html-container{
               </div>
               <!-- </div> -->
             </div>
-
+            </div>
             <div class="yellow-bg">
               <p class="ps-4 ps-sm-5  pt-3">
                 We’ve got you covered- <br> 
@@ -1207,7 +1275,7 @@ div:where(.swal2-container) .swal2-html-container{
               Services <span class="fw-bold text-white Covered"> Covered</span>
             </h3>
             <p class="bottom-text col-sm-9">
-              Select the coating series you have chosen for your car
+              Select the coating series you have choosen for your car
             </p>
             <!-- <div class="radio-buttons my-4">
               <label class="radio-container">
