@@ -4,16 +4,26 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WARRANTY_CARD</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
       rel="stylesheet"
     />
+    
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+ <!-- Bootstrap Datepicker CSS -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+
+ <!-- Bootstrap Datepicker JS -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+
+    
     <script>
       (function () {
         emailjs.init("1c4y2FTo1ssJxkd6N"); // Apna EmailJS user ID yahan daalein
@@ -228,8 +238,7 @@
         font-size: 18px;
         font-weight: 500;
       }
-
-      input[type="date"] {
+      .servicebox  input[type="text"] {
         background-color: transparent;
         color: gray;
         border: none;
@@ -238,6 +247,10 @@
         letter-spacing: 2px;
         text-transform: uppercase;
       }
+      .servicebox  input[type="text"]::placeholder{
+        color: #4E4E4E;
+      } 
+
       .Vehiclerow .form-label {
         color: #444444;
         font-size: 18px;
@@ -1363,17 +1376,17 @@ input[type="date"] {
             <div class="form-section">
               <!-- Service Date -->
               <div
-                class="form-group servicebox d-flex align-items-center my-md-4 my-2"
+              class="form-group servicebox d-flex align-items-center my-md-4 my-2"
               >
                 <label
                   for="serviceDate"
-                  class="form-label col-6 col-sm-7 service-lable"
+                  class="form-label col-6 col-sm-5 service-lable"
                   >Service Date  <span class="reqsym" style="color: #fff;"> * </span></label
                 >
                 <input
-                  type="date"
-                  class="form-control date-input"
-                  placeholder="YYYY-MM-DD"
+                  type="text"
+                  class="form-control date-input datepicker"
+                  placeholder="DD / MM / YYYY"
                   id="serviceDate"
                   name="service_date"
                   required
@@ -1521,6 +1534,17 @@ input[type="date"] {
       });
   </script> -->
 
+
+  <script>
+    // Initialize the datepicker
+    $(document).ready(function () {
+        $('.datepicker').datepicker({
+          format: 'dd/mm/yyyy', // Date format
+            autoclose: true,       // Close on date selection
+            todayHighlight: true   // Highlight today's date
+        });
+    });
+</script>
     <script>
 
 
@@ -1888,20 +1912,6 @@ const brandModels = {
 };
 
 
-// document.addEventListener('DOMContentLoaded', function() {
-//         const modelSelect = document.getElementById('Model');
-//         const otherTextInput = document.getElementById('otherText');
-
-//         modelSelect.addEventListener('change', function() {
-//             if (modelSelect.value === 'Other') {
-//                 otherTextInput.style.display = 'block'; // Show the input field
-//             } else {
-//                 otherTextInput.style.display = 'none'; // Hide the input field
-//                 otherTextInput.value = ''; // Clear the input field
-//             }
-//         });
-//     });
-
       document.getElementById("Brand").addEventListener("change", function () {
         const brand = this.value;
         const modelSelect = document.getElementById("Model");
@@ -1922,128 +1932,121 @@ const brandModels = {
       });
     </script>
 
-    <script>
-       document.getElementById('vehiclePicture').addEventListener('change', function() {
-              const fileInput = document.getElementById('vehiclePicture');
-              const fileNameDisplay = document.getElementById('fileName');
+<script>
+  // File input change event
+document.getElementById('vehiclePicture').addEventListener('change', function () {
+    const fileInput = document.getElementById('vehiclePicture');
+    const fileNameDisplay = document.getElementById('fileName');
 
-              // Get the name of the uploaded file
-              const fileName = fileInput.files[0] ? fileInput.files[0].name : 'No file selected';
+    // Get the name of the uploaded file
+    const fileName = fileInput.files[0] ? fileInput.files[0].name : 'No file selected';
 
-              // Update the file name display
-              fileNameDisplay.textContent = fileName;
-          });
-      document
-        .getElementById("warrantyForm")
-        .addEventListener("submit", function (event) {
-          event.preventDefault(); // Prevent default form submission
+    // Update the file name display
+    fileNameDisplay.textContent = fileName;
+});
 
-          // Get form field values
-          const customerName = document.getElementById("customerName").value;
-          const phoneNumber = document.getElementById("phoneNumber").value;
-          const bodyType = document.getElementById("Body-Type").value;
-          const brand = document.getElementById("Brand").value;
-          const model = document.getElementById("Model").value;
-          const color = document.getElementById("Color").value;
-          const chassisNumber = document.getElementById("Chassis-No").value;
-          const serviceOutlet = document.getElementById("Service-Outlet").value;
-          const amountPaid = document.getElementById("amountPaid").value;
+// Form submission event
+document.getElementById("warrantyForm").addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent default form submission
 
-// // Get the selected service date
-// const serviceDateInput = document.getElementById('serviceDate').value;
-// const serviceDate = new Date(serviceDateInput);
-// const today = new Date();
+    // Get form field values
+    const customerName = document.getElementById("customerName").value;
+    const phoneNumber = document.getElementById("phoneNumber").value;
+    const bodyType = document.getElementById("Body-Type").value;
+    const brand = document.getElementById("Brand").value;
+    const model = document.getElementById("Model").value;
+    const color = document.getElementById("Color").value;
+    const chassisNumber = document.getElementById("Chassis-No").value;
+    const serviceOutlet = document.getElementById("Service-Outlet").value;
+    const amountPaid = document.getElementById("amountPaid").value;
 
-// // Remove the time portion from the dates for accurate comparison
-// today.setHours(0, 0, 0, 0);  // Set today's time to midnight
+    const serviceDateInput = document.getElementById('serviceDate').value;
 
-// // Set the max allowed date to 7 days after the service date
-// const maxDate = new Date(serviceDate);
-// maxDate.setDate(serviceDate.getDate() + 7);  // Set max date to 7 days after the service date
-
-// // Check if the selected service date is older than today or more than 7 days from today
-// if (today > maxDate || serviceDate > today) {
-//     Swal.fire({
-//         title: "Oops!",
-//         text: "This form can only be submitted within 7 days after the service date. Please check your dates and try again!",
-//         icon: "error",
-//     });
-//     return;  // Stop form submission if the date is invalid
-// }
-
-// // If all checks pass, proceed with form submission
-
-
-const serviceDateInput = document.getElementById('serviceDate').value;
-const serviceDate = new Date(serviceDateInput);
-const today = new Date();
-
-// Format the service date to "YYYY-MM-DD"
-const formattedServiceDate = serviceDate.toISOString().split('T')[0];  // Get only the date part (YYYY-MM-DD)
-
-// Remove the time portion from the dates for accurate comparison
-today.setHours(0, 0, 0, 0);
-
-// Set the max allowed date to 7 days after the service date
-const maxDate = new Date(serviceDate);
-maxDate.setDate(serviceDate.getDate() + 7);
-
-// Check if the selected service date is older than today or more than 7 days from today
-if (today > maxDate || serviceDate > today) {
-    Swal.fire({
-        title: "Oops!",
-        text: "This form can only be submitted within 7 days after the service date. Please check your dates and try again!",
-        icon: "error",
-    });
-    return;  // Stop form submission if the date is invalid
-}
-
-          // Get selected radio button for series
-          const selectedSeries = document.querySelector(
-            'input[name="series"]:checked'
-          ).value;
-
-          // Get the file input value
-          const vehiclePictureInput = document.getElementById("vehiclePicture");
-          const vehiclePicture = vehiclePictureInput.files[0]
-            ? vehiclePictureInput.files[0].name
-            : "No file selected"; // File object (null if no file selected)
-
-          console.log(vehiclePicture);
-          // Send email using emailjs.send (without actual file upload)
-          emailjs
-            .send("service_793fdcz", "template_ltpnmjq", {
-              customer_name: customerName,
-              phone_number: phoneNumber,
-              body_type: bodyType,
-              brand: brand,
-              model: model,
-              color: color,
-              chassis_number: chassisNumber,
-              service_outlet: serviceOutlet,
-              service_date: formattedServiceDate,
-              amount_paid: amountPaid,
-              selected_series: selectedSeries,
-              vehicle_picture: vehiclePicture, // Just send the file name
-            })
-            .then(
-              function (response) {
-                console.log("SUCCESS!", response.status, response.text);
+    // Check if a date was entered
+    if (!serviceDateInput) {
         Swal.fire({
-            title: "Successfull!",
-            text: "Warranty details submitted successfully! You will get a response from us within 72 hours",
-            icon: "success",
-        }).then(() => {
-            document.getElementById("warrantyForm").reset(); // Reset all fields after alert is closed
+            title: "Error!",
+            text: "Please enter a service date.",
+            icon: "error",
         });
-              },
-              function (error) {
-                console.error("FAILED...", error);
-                alert("Error sending email.");
-              }
-            );
+        return; // Stop if no date entered
+    }
+
+    // Convert "dd/mm/yyyy" to "yyyy-mm-dd"
+    const [day, month, year] = serviceDateInput.split('/');
+    const serviceDate = new Date(`${year}-${month}-${day}`);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Reset today's time
+
+    // Calculate the minimum valid date (7 days before today)
+    const minDate = new Date(today);
+    minDate.setDate(today.getDate() - 7);
+
+    // Validate the service date
+    if (serviceDate < minDate || serviceDate > today) {
+        Swal.fire({
+            title: "Oops!",
+            text: "The service date must be within the last 7 days, including today.",
+            icon: "error",
         });
-    </script>
+        return; // Stop form submission if the date is invalid
+    }
+
+    // Get selected radio button for series
+    const selectedSeries = document.querySelector('input[name="series"]:checked');
+    if (!selectedSeries) {
+        Swal.fire({
+            title: "Error!",
+            text: "Please select a series.",
+            icon: "error",
+        });
+        return; // Stop if no series is selected
+    }
+
+    const seriesValue = selectedSeries.value; // Get the value of the selected series
+
+    // Get the file input value
+    const vehiclePictureInput = document.getElementById("vehiclePicture");
+    const vehiclePicture = vehiclePictureInput.files[0] ? vehiclePictureInput.files[0].name : "No file selected"; // File object
+
+    // Send email using emailjs.send (without actual file upload)
+    emailjs.send("service_793fdcz", "template_ltpnmjq", {
+        customer_name: customerName,
+        phone_number: phoneNumber,
+        body_type: bodyType,
+        brand: brand,
+        model: model,
+        color: color,
+        chassis_number: chassisNumber,
+        service_outlet: serviceOutlet,
+        service_date: serviceDate.toISOString().split('T')[0], // Format the date correctly
+        amount_paid: amountPaid,
+        selected_series: seriesValue, // Send the series value
+        vehicle_picture: vehiclePicture, // Just send the file name
+    })
+    .then(
+        function (response) {
+            console.log("SUCCESS!", response.status, response.text);
+            Swal.fire({
+                title: "Successful!",
+                text: "Warranty details submitted successfully! You will get a response from us within 72 hours.",
+                icon: "success",
+            }).then(() => {
+                document.getElementById("warrantyForm").reset(); // Reset all fields after alert is closed
+            });
+        },
+        function (error) {
+            console.error("FAILED...", error);
+            Swal.fire({
+                title: "Error!",
+                text: "There was an error sending your details. Please try again.",
+                icon: "error",
+            });
+        }
+    );
+});
+
+</script>
     <script>
       // Tooltip initialization
       document.addEventListener("DOMContentLoaded", function () {
